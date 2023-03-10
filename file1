@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Prod') {
             steps {
-                echod 'This is Prod'
+                echo 'This is Prod'
             }
         }
     }
