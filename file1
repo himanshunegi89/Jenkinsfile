@@ -1,0 +1,47 @@
+pipeline {
+    agent any
+    environment {
+        name = 'himu'
+    }
+    parameters{
+        string(name: 'person', defaultValue: 'HNegi', description: "What is ur name sir?")
+    }
+    stages {
+        stage('Environment Variable') {
+            steps {
+                sh 'echo "${name}"'
+            }
+        }
+        stage('Parameters') {
+            steps {
+                sh 'echo "${name}"'
+                sh 'echo "${person}"'
+            }
+        }
+        stage('Continue??') {
+            input {
+                message "Should we continue?"
+                ok "Yes, we should"
+            }
+            steps {
+                echo 'Hello Continue'
+            }
+        }
+        stage('Prod') {
+            steps {
+                echod 'This is Prod'
+            }
+        }
+    }
+    post{ 
+        always { 
+            echo 'I will always say Hello again!'
+        }
+        failure { 
+            echo 'Failure'
+        }
+        success { 
+            echo 'Success'
+        }
+    }
+}
